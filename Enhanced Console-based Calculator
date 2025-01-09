@@ -1,0 +1,129 @@
+import java.util.Scanner;
+
+public class EnhancedCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean continueCalculating = true;
+
+        while (continueCalculating) {
+            System.out.println("Welcome to the Enhanced Console-based Calculator!");
+            System.out.println("Select an operation:");
+            System.out.println("1. Basic Arithmetic");
+            System.out.println("2. Scientific Calculations");
+            System.out.println("3. Unit Conversions");
+            System.out.println("4. Exit");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    performBasicArithmetic(scanner);
+                    break;
+                case 2:
+                    performScientificCalculations(scanner);
+                    break;
+                case 3:
+                    performUnitConversions(scanner);
+                    break;
+                case 4:
+                    continueCalculating = false;
+                    System.out.println("Exiting the calculator. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void performBasicArithmetic(Scanner scanner) {
+        System.out.println("Basic Arithmetic Operations:");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Division");
+        System.out.print("Choose an operation: ");
+        int operation = scanner.nextInt();
+
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+
+        switch (operation) {
+            case 1:
+                System.out.println("Result: " + (num1 + num2));
+                break;
+            case 2:
+                System.out.println("Result: " + (num1 - num2));
+                break;
+            case 3:
+                System.out.println("Result: " + (num1 * num2));
+                break;
+            case 4:
+                if (num2 != 0) {
+                    System.out.println("Result: " + (num1 / num2));
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                }
+                break;
+            default:
+                System.out.println("Invalid operation.");
+        }
+    }
+
+    private static void performScientificCalculations(Scanner scanner) {
+        System.out.println("Scientific Calculations:");
+        System.out.println("1. Square Root");
+        System.out.println("2. Exponentiation");
+        System.out.print("Choose an operation: ");
+        int operation = scanner.nextInt();
+
+        System.out.print("Enter a number: ");
+        double num = scanner.nextDouble();
+
+        switch (operation) {
+            case 1:
+                if (num < 0) {
+                    System.out.println("Error: Cannot calculate square root of a negative number.");
+                } else {
+                    System.out.println("Result: " + Math.sqrt(num));
+                }
+                break;
+            case 2:
+                System.out.print("Enter the exponent: ");
+                double exponent = scanner.nextDouble();
+                System.out.println("Result: " + Math.pow(num, exponent));
+                break;
+            default:
+                System.out.println("Invalid operation.");
+        }
+    }
+
+    private static void performUnitConversions(Scanner scanner) {
+        System.out.println("Unit Conversions:");
+        System.out.println("1. Celsius to Fahrenheit");
+        System.out.println("2. Fahrenheit to Celsius");
+        System.out.print("Choose an operation: ");
+        int operation = scanner.nextInt();
+
+        switch (operation) {
+            case 1:
+                System.out.print("Enter temperature in Celsius: ");
+                double celsius = scanner.nextDouble();
+                double fahrenheit = (celsius * 9/5) + 32;
+                System.out.println("Result: " + fahrenheit + " °F");
+                break;
+            case 2:
+                System.out.print("Enter temperature in Fahrenheit: ");
+                double fahrenheitInput = scanner.nextDouble();
+                double celsiusResult = (fahrenheitInput - 32) * 5/9;
+                System.out.println("Result: " + celsiusResult + " °C");
+                break;
+            default:
+                System.out.println("Invalid operation.");
+        }
+    }
+}
